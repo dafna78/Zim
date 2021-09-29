@@ -1,3 +1,5 @@
+package webTests;
+
 import extentions.UIActions;
 import extentions.Verify;
 import extentions.Wait;
@@ -10,18 +12,19 @@ import utilities.CommonOps;
 
 import java.util.HashMap;
 
-
 @Listeners(utilities.Listeners.class)
-public class WebTests  extends CommonOps
+public class W3schoolTests extends CommonOps
 {
-    @Test(description = "Test01 - Verify Table Cell Text By Loop")
-    @Description("This test gets a cell text by looping the table and verifies its text")
-    public void test01_verifyTableCellTextByLoop() throws Exception
+    String packageName = "webTests";
+    String className = this.getClass().getSimpleName();
+
+    @Test(description = "Test01 - Verify 'Customers' Table Cell Text By Loop")
+    @Description("This test gets a cell text by looping the 'Customers' table and verifies its text")
+    public void test01_verifyCustomersTableCellTextByLoop() throws Exception
     {
-        String className = this.getClass().getSimpleName();
         String testName = "test01";
 
-        HashMap<String, String> testProperties = properties.getTestProperties(className, testName);
+        HashMap<String, String> testProperties = properties.getTestProperties(packageName, className, testName);
 
         //Read test values from properties file
         int searchColumn = Parse.toInt(testProperties.get("searchColumn.index"));
@@ -39,14 +42,13 @@ public class WebTests  extends CommonOps
         Verify.verifyTableCellText("Verify the cell text equals the expected text", table, searchColumn, searchText, returnColumnText, expectedText);
     }
 
-    @Test(description = "Test02 - Verify Table Cell Text By XPATH")
-    @Description("This test gets a cell text by XPATH and verifies its text")
-    public void test02_verifyTableCellTextByXpath() throws Exception
+    @Test(description = "Test02 - Verify 'Customers' Table Cell Text By XPATH")
+    @Description("This test gets a cell text from 'Customers' table using XPATH and verifies its text")
+    public void test02_verifyCustomersTableCellTextByXpath() throws Exception
     {
-        String className = this.getClass().getSimpleName();
         String testName = "test02";
 
-        HashMap<String, String> testProperties = properties.getTestProperties(className, testName);
+        HashMap<String, String> testProperties = properties.getTestProperties(packageName, className, testName);
 
         //Read test values from properties file
         int searchColumn = Parse.toInt(testProperties.get("searchColumn.index"));

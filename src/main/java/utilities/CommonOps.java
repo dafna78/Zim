@@ -1,13 +1,12 @@
 package utilities;
 
 import extentions.UIActions;
-import io.restassured.RestAssured;
-import org.json.simple.JSONObject;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.Screen;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
+
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +24,6 @@ public class CommonOps extends Base
     public void startSession(String PlatformName) throws Exception
     {
         platform = PlatformName;
-        //platform = "web";
         switch (platform)
         {
             case "web":
@@ -34,7 +32,7 @@ public class CommonOps extends Base
                 initWebPages();
                 break;
             case "api":
-                initAPI();
+                //initAPI(); TODO
                 break;
             default:
                 throw new RuntimeException("Invalid platform name");
@@ -118,18 +116,6 @@ public class CommonOps extends Base
         initTimeouts();
     }
 
-
-    /**
-     * For API Testing: This method initialises the base URI, Http request and creates a new JSONObject.
-     */
-    public static void initAPI()
-    {
-        RestAssured.baseURI = getData("UrlApi");
-        apiKey = getCredentials("ApiKey");
-        initHttpRequest();
-        requestParams = new JSONObject();
-    }
-
     //*******************************************
 
     /**
@@ -141,15 +127,6 @@ public class CommonOps extends Base
     }
 
     //*******************************************
-
-    /**
-     * Initialises RequestSpecification object.
-     */
-    public static void initHttpRequest()
-    {
-        //httpRequest = RestAssured.given().auth().preemptive().basic(getData("apiAdminUser"), getData("apiAdminPassword"));
-        httpRequest = RestAssured.given();
-    }
 
     /**
      * Initialises the timeouts for the tests according to the timeout specified in the DataConfig file.
@@ -168,15 +145,5 @@ public class CommonOps extends Base
     public static String getData (String nodeName)
     {
         return SystemOps.getDataFromXML("./Configurations/DataConfig.xml", nodeName);
-    }
-
-    /**
-     * Reads data from SensitiveConfig.xml.
-     * @param nodeName The name of the node in the file to read the date from.
-     * @return the data found in the node.
-     */
-    public static String getCredentials (String nodeName)
-    {
-        return SystemOps.getDataFromXML("./Configurations/SensitiveConfig.xml", nodeName);
     }
 }

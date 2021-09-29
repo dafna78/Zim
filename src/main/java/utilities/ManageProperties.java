@@ -57,11 +57,10 @@ public class ManageProperties extends CommonOps
      * @param testFile the test file the is running, i.e WebTests etc.
      * @param testName test test that is running within the file, i.e test01.
      * @return a list of the test properties excluding the file and test names
-     * @throws Exception
      */
-    public HashMap<String, String> getTestProperties(String testFile, String testName)
+    public HashMap<String, String> getTestProperties(String packageName, String testFile, String testName)
     {
-        String propertyKey = String.format("%s.%s", testFile, testName);
+        String propertyKey = String.format("%s.%s.%s", packageName, testFile, testName);
         Enumeration<?> propertyNames = properties.propertyNames();
 
         //List<String> testProperties = new ArrayList<>();
