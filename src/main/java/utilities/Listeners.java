@@ -118,7 +118,6 @@ public class Listeners extends CommonOps implements ITestListener
      */
     public void deleteRecording()
     {
-        //File file = new File("./test-recordings/" + test.getName() + ".avi");
         File file = new File("./test-recordings/" + MonteScreenRecorder.name + ".avi");
         String filePath = null;
         try

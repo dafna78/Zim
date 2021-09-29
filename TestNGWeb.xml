@@ -4,12 +4,10 @@
     <test name="Web Tests">
         <parameter name="PlatformName" value="web" />
         <classes>
-            <class name="WebTests">
+            <class name="webTests.W3schoolTests">
                 <methods>
-<!--
-                    <include name="test01_verifyTableCellTextByLoop"></include>
--->
-                    <include name="test02_verifyTableCellTextByXpath"></include>
+                    <include name="test01_verifyCustomersTableCellTextByLoop"/>
+                    <include name="test02_verifyCustomersTableCellTextByXpath"/>
                 </methods>
             </class>
         </classes>
