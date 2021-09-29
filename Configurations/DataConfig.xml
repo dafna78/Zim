@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Environment>
+    <!-- Timeout -->
+    <TimeOut>5</TimeOut>
+
+    <!--General-->
+    <ImageRego>./ImageRepository/</ImageRego>
+    <TestProperties>./TestsProperties.properties</TestProperties>
+
+    <!-- Web -->
+    <BrowserName>chrome</BrowserName>
+    <Url>http://www.w3schools.com/html/html_tables.asp</Url>
+
+    <!-- API -->
+    <UrlApi>http://localhost:3000/</UrlApi>
+
+</Environment>

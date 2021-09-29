@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Web Suite" parallel="false">
+    <test name="Web Tests">
+        <parameter name="PlatformName" value="web" />
+        <classes>
+            <class name="WebTests">
+                <methods>
+<!--
+                    <include name="test01_verifyTableCellTextByLoop"></include>
+-->
+                    <include name="test02_verifyTableCellTextByXpath"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
