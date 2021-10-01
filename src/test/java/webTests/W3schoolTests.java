@@ -12,11 +12,14 @@ import utilities.CommonOps;
 
 import java.util.HashMap;
 
+import static org.testng.Assert.assertTrue;
+
 @Listeners(utilities.Listeners.class)
 public class W3schoolTests extends CommonOps
 {
     String packageName = "webTests";
     String className = this.getClass().getSimpleName();
+
 
     @Test(description = "Test01 - Verify 'Customers' Table Cell Text By Loop")
     @Description("This test gets a cell text by looping the 'Customers' table and verifies its text")
@@ -39,7 +42,10 @@ public class W3schoolTests extends CommonOps
 
         UIActions.scrollIntoView(table);
 
-        Verify.verifyTableCellText("Verify the cell text equals the expected text", table, searchColumn, searchText, returnColumnText, expectedText);
+        boolean doTextsMatch = Verify.verifyTableCellText("Verify the cell text equals the expected text", table, searchColumn, searchText, returnColumnText, expectedText);
+
+        assertTrue(doTextsMatch);
+
     }
 
     @Test(description = "Test02 - Verify 'Customers' Table Cell Text By XPATH")
