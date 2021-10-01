@@ -3,6 +3,7 @@ package extentions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
+
 import static org.testng.Assert.*;
 
 public class Verify extends CommonOps
@@ -29,17 +30,32 @@ public class Verify extends CommonOps
     }
 
     /**
-     * Verifies the text found in the cell matches the expected text
+     * Checks if the text found in the cell matches the expected text
      * @param log log to the report
      * @param table the table element
      * @param searchColumn the index of the column to search by
      * @param searchText the text to search in the searched column
      * @param returnColumnText the index of the desired column, where the desired text displays
      * @param expectedText the text to compare to
-     * @return
+     * @return true/false if the displayed text and expected match
      */
     @Step("{0}")
-    public static void verifyTableCellText(String log, WebElement table, int searchColumn, String searchText, int returnColumnText, String expectedText)
+    public static boolean verifyTableCellText(String log, WebElement table, int searchColumn, String searchText, int returnColumnText, String expectedText)
+    {
+        try
+        {
+            String displayedText = UIActions.getTableCellText(table, searchColumn, searchText, returnColumnText);
+
+            return displayedText.equals(expectedText);
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+    }
+
+    @Step("{0}")
+    public static void verifyTableCellText_MyOriginalImplementation(String log, WebElement table, int searchColumn, String searchText, int returnColumnText, String expectedText)
     {
         try
         {
