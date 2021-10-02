@@ -27,18 +27,18 @@ public class CommonOps extends Base
         switch (platform)
         {
             case "web":
+                testProperties = new ManageProperties(getData("WebTestProperties"));
                 initBrowser(getData("BrowserName"));
                 initTimeouts();
                 initWebPages();
                 break;
             case "api":
-                //initAPI(); TODO
+                testProperties = new ManageProperties(getData("ApiTestProperties"));
+                initAPI();
                 break;
             default:
                 throw new RuntimeException("Invalid platform name");
         }
-
-        properties = new ManageProperties();
 
         screen = new Screen();
     }
@@ -116,6 +116,17 @@ public class CommonOps extends Base
         initTimeouts();
     }
 
+    /**
+     * For API testing: this method initialises javaxMal object with the host, username and password
+     */
+    public static void initAPI()
+    {
+        String host = "imap.gmail.com";
+        String user = getCredentials("zim_user");
+        String password = getCredentials("zim_password");
+
+        javaXMail = new JavaXMail(host, user, password);
+    }
     //*******************************************
 
     /**
@@ -145,5 +156,16 @@ public class CommonOps extends Base
     public static String getData (String nodeName)
     {
         return SystemOps.getDataFromXML("./Configurations/DataConfig.xml", nodeName);
+    }
+
+
+    /**
+     * Reads data from SensitiveConfig.xml.
+     * @param nodeName The name of the node in the file to read the date from.
+     * @return the data found in the node.
+     */
+    public static String getCredentials (String nodeName)
+    {
+        return SystemOps.getDataFromXML("./Configurations/SensitiveConfig.xml", nodeName);
     }
 }

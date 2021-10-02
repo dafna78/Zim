@@ -17,7 +17,6 @@ import static org.testng.Assert.assertTrue;
 @Listeners(utilities.Listeners.class)
 public class W3schoolTests extends CommonOps
 {
-    String packageName = "webTests";
     String className = this.getClass().getSimpleName();
 
 
@@ -27,18 +26,18 @@ public class W3schoolTests extends CommonOps
     {
         String testName = "test01";
 
-        HashMap<String, String> testProperties = properties.getTestProperties(packageName, className, testName);
+        HashMap<String, String> testProp = testProperties.getTestProperties(className, testName);
 
         //Read test values from properties file
-        int searchColumn = Parse.toInt(testProperties.get("searchColumn.index"));
-        String searchText = testProperties.get("searchText.text");
-        int returnColumnText = Parse.toInt(testProperties.get("returnColumnText.index"));
-        String expectedText = testProperties.get("expectedText.text");
+        int searchColumn = Parse.toInt(testProp.get("searchColumn.index"));
+        String searchText = testProp.get("searchText.text");
+        int returnColumnText = Parse.toInt(testProp.get("returnColumnText.index"));
+        String expectedText = testProp.get("expectedText.text");
 
 
         WebElement table = Wait.forVisibilityOf(html_tables_page.getCustomersTable());
 
-        Verify.exists("Verify the Customers table displays on page", table);
+        Verify.exists("Verify the Customers table displays on page", table, "Customers table is not displayed on page");
 
         UIActions.scrollIntoView(table);
 
@@ -54,22 +53,22 @@ public class W3schoolTests extends CommonOps
     {
         String testName = "test02";
 
-        HashMap<String, String> testProperties = properties.getTestProperties(packageName, className, testName);
+        HashMap<String, String> testProp = testProperties.getTestProperties(className, testName);
 
         //Read test values from properties file
-        int searchColumn = Parse.toInt(testProperties.get("searchColumn.index"));
-        String searchText = testProperties.get("searchText.text");
-        int returnColumnText = Parse.toInt(testProperties.get("returnColumnText.index"));
-        String expectedText = testProperties.get("expectedText.text");
+        int searchColumn = Parse.toInt(testProp.get("searchColumn.index"));
+        String searchText = testProp.get("searchText.text");
+        int returnColumnText = Parse.toInt(testProp.get("returnColumnText.index"));
+        String expectedText = testProp.get("expectedText.text");
 
 
-        WebElement exampleTable = Wait.forVisibilityOf(html_tables_page.getCustomersTable());
+        WebElement table = Wait.forVisibilityOf(html_tables_page.getCustomersTable());
 
-        Verify.exists("Verify the example table displays on page", exampleTable);
+        Verify.exists("Verify the Customers table displays on page", table, "Customers table is not displayed on page");
 
-        UIActions.scrollIntoView(exampleTable);
+        UIActions.scrollIntoView(table);
 
-        String displayedText = UIActions.getTableCellTextByXpath(exampleTable, searchColumn, searchText, returnColumnText);
+        String displayedText = UIActions.getTableCellTextByXpath(table, searchColumn, searchText, returnColumnText);
 
         //Perform a normal equal assertion
         Verify.equals("Verify the cell text equals the expected text", displayedText, expectedText);

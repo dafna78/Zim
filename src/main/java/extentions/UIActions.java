@@ -37,7 +37,7 @@ public class UIActions extends CommonOps
      * @return the text from the cell that was found
      * @throws Exception will return exceptions if table does not contain rows, columns, if the search values are illegal or if no cell is found with the XPATH
      */
-    @Step("Test Flow: Get table call text")
+    @Step("Get table call text")
     public static String getTableCellText(WebElement table, int searchColumn, String searchText, int returnColumnText) throws Exception
     {
         List<WebElement> tableRows = getTableRows(table);

@@ -5,7 +5,8 @@
 
     <!--General-->
     <ImageRego>./ImageRepository/</ImageRego>
-    <TestProperties>./TestsProperties.properties</TestProperties>
+    <WebTestProperties>./WebTestsProperties.properties</WebTestProperties>
+    <ApiTestProperties>./ApiTestsProperties.properties</ApiTestProperties>
 
     <!-- Web -->
     <BrowserName>chrome</BrowserName>
