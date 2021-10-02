@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
+import javax.annotation.Nullable;
+
 import static org.testng.Assert.*;
 
 public class Verify extends CommonOps
@@ -13,9 +15,9 @@ public class Verify extends CommonOps
      * @param object the assertion object
      */
     @Step("{0}")
-    public static void exists(String log, Object object)
+    public static void exists(String log, Object object, @Nullable String optionalErrMessage)
     {
-        assertNotNull(object);
+        assertNotNull(object, optionalErrMessage);
     }
 
     /**

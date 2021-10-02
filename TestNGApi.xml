@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Api Suite" parallel="false">
+    <test name="Api Tests">
+        <parameter name="PlatformName" value="api" />
+        <classes>
+            <class name="apiTests.GmailTests">
+                <methods>
+                    <include name="test01_verifyEmailExistsBySearchCriteria"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

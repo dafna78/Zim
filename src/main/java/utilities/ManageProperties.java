@@ -9,23 +9,23 @@ import java.util.Properties;
 
 public class ManageProperties extends CommonOps
 {
-    Properties properties;
+    static Properties properties;
 
-    public ManageProperties() throws Exception
+    public ManageProperties(String filePath) throws Exception
     {
         try
         {
-            FileInputStream testsPropFile = new FileInputStream(getData("TestProperties"));
+            FileInputStream testsPropFile = new FileInputStream(filePath);
             properties = new Properties();
             properties.load(testsPropFile);
         }
         catch (FileNotFoundException e)
         {
-            throw new Exception(String.format("Tests properties file cannot be found. %s.", getData("TestProperties")));
+            throw new Exception(String.format("Tests properties file cannot be found. %s.", filePath));
         }
         catch (IOException e)
         {
-            throw new Exception(String.format("Tests properties file could not be loaded. %s.", getData("TestProperties")));
+            throw new Exception(String.format("Tests properties file could not be loaded. %s.", filePath));
         }
     }
 
@@ -34,7 +34,7 @@ public class ManageProperties extends CommonOps
      * @return returns the property value as a String
      * @throws Exception exception will be thrown if the property name cannot be found
      */
-    public String getProperty(String propertyName) throws Exception
+    public static String getProperty(String propertyName) throws Exception
     {
         //Verify the file contains the key
         if(!properties.containsKey(propertyName))
@@ -58,9 +58,9 @@ public class ManageProperties extends CommonOps
      * @param testName test test that is running within the file, i.e test01.
      * @return a list of the test properties excluding the file and test names
      */
-    public HashMap<String, String> getTestProperties(String packageName, String testFile, String testName)
+    public static HashMap<String, String> getTestProperties(String testFile, String testName)
     {
-        String propertyKey = String.format("%s.%s.%s", packageName, testFile, testName);
+        String propertyKey = String.format("%s.%s", testFile, testName);
         Enumeration<?> propertyNames = properties.propertyNames();
 
         //List<String> testProperties = new ArrayList<>();

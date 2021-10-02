@@ -19,10 +19,13 @@ public class Base
     protected static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     protected static final SimpleDateFormat tf = new SimpleDateFormat("HH.mm.ss");
     protected static String platform;
-    protected static ManageProperties properties;
+    protected static ManageProperties testProperties;
 
     //Web
     protected static WebDriver driver;
+
+    //API
+    protected static JavaXMail javaXMail;
 
     //Page objects - web
     protected static HTML_Tables_page html_tables_page;
