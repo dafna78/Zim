@@ -1,6 +1,10 @@
-* In order  to run the tests - right click on the TestNGWeb.xml file and select RUN
+* In order  to run the test: right click on the relevant TestNG.xml file and select RUN
+Web tests - TestNGWeb.xml
+Api tests - TestNGApi.xml
 
-* Tests' values can be changed in TestsProperties.properties file
+* Tests' values can be changed in TestsProperties files located under ./src/test/TestsProperties folder
+Web tests - WebTestsProperties.properties
+Api tests - ApiTestsProperties.properties
 
 * To view the report:
 1. Open your IDE Terminal or CMD window
@@ -9,7 +13,7 @@
 
 The report will open on the 'Overview' page
 
-4. Click on 'Suits' and navigate down the dropdown arrows to view the results
+4. Click on 'Suits' and navigate down the dropdown arrows to view the results in your selected suite
 
 In case a test fails - a screenshot will be attached to the Test Body and a recording will be available under the test-recordings folder in your IDE.
 
