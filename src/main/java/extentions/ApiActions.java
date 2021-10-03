@@ -50,4 +50,10 @@ public class ApiActions extends CommonOps
     {
         javaXMail.printEmailContent(message);
     }
+
+    @Step("Get email inner content")
+    public static String getEmailContent(Message message) throws IOException, MessagingException
+    {
+        return javaXMail.getEmailInnerContent(message);
+    }
 }

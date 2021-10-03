@@ -150,7 +150,7 @@ public class JavaXMail
             return null;
 
         if(messageIndex >= matchingEmails.length)
-            throw new Exception(String.format("Invalid value %d. MessageIndex cannot be equal or higher than the number of messages", messageIndex));
+            throw new Exception(String.format("Invalid value %d. MessageIndex cannot be equal or higher than the number of matching messages found", messageIndex));
 
         return matchingEmails[messageIndex];
     }
@@ -166,31 +166,34 @@ public class JavaXMail
         System.out.println("---------------------------------");
         System.out.println("Subject: " + message.getSubject());
         System.out.println("From: " + message.getFrom()[0]);
+        System.out.println("Date: " + message.getSentDate());
+        System.out.println("---------------------------------");
 
-        printMessagePart(message);
+        System.out.println(getEmailInnerContent(message));
     }
 
     /**
-     * Print each part of the email message to the console
+     * Get email's inner content
      * @param msgPart the message part
      * @throws javax.mail.MessagingException, if cannot read the content
      * @throws IOException if cannot read the content
      */
-    private static void printMessagePart(Part msgPart) throws javax.mail.MessagingException, IOException
+    public static String getEmailInnerContent(Part msgPart) throws MessagingException, IOException
     {
+        String content = "";
         if (msgPart.isMimeType("text/plain"))
         {
-            System.out.println("---------------------------");
-            System.out.println((String) msgPart.getContent());
+            return (String) msgPart.getContent();
         }
-        //check if the content has attachment
-        else if (msgPart.isMimeType("multipart/*"))
+        else if(msgPart.isMimeType("multipart/*"))
         {
-            System.out.println("---------------------------");
             Multipart mp = (Multipart) msgPart.getContent();
             int count = mp.getCount();
+
             for (int i = 0; i < count; i++)
-                printMessagePart(mp.getBodyPart(i));
+                content += getEmailInnerContent(mp.getBodyPart(i));
+
         }
+        return content;
     }
 }

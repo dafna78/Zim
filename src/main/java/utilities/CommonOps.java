@@ -3,7 +3,6 @@ package utilities;
 import extentions.UIActions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.sikuli.script.Screen;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -39,8 +38,6 @@ public class CommonOps extends Base
             default:
                 throw new RuntimeException("Invalid platform name");
         }
-
-        screen = new Screen();
     }
 
     /**

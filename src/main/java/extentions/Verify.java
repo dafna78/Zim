@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
 import javax.annotation.Nullable;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import java.io.IOException;
 
 import static org.testng.Assert.*;
 
@@ -29,6 +32,17 @@ public class Verify extends CommonOps
     public static void equals(String log, String actual, String expected)
     {
         assertEquals(actual, expected);
+    }
+
+
+    /**
+     * Verifies the condition/(parameter received) is true. If it is not, an AssertionError is thrown.
+     * @param expected the condition to evaluate
+     */
+    @Step("{0}")
+    public static void isTrue(String log, boolean expected, @Nullable String optionalErrMessage)
+    {
+        assertTrue(expected);
     }
 
     /**
@@ -68,5 +82,16 @@ public class Verify extends CommonOps
         {
             fail(e.getMessage());
         }
+    }
+
+    @Step("Verify email content")
+    public static void verifyEmailContent(Message message, String expectedText) throws IOException, MessagingException
+    {
+        //Read the email's content
+        String emailContent = ApiActions.getEmailContent(message);
+
+        //Verify the email content contains the expected text
+        Verify.isTrue(String.format("Verify the email content contains the expected text '%s'", expectedText), emailContent.contains(expectedText), null);
+
     }
 }
